@@ -28,11 +28,11 @@ local config = {
       ['"'] = { left = '["]', right = '[%w(%[{<]' },
       ["`"] = { left = "[`]", right = "[%w(%[{<]" },
       ["("] = { left = "[$]", right = "[%w(%[{<]" },
-      [")"] = { left = "[$]", right = "[%w(%[{<]" },
+      [")"] = { left = "[(]", right = "[%w(%[{<]" },
       ["["] = { left = "[$]", right = "[%w(%[{<]" },
-      ["]"] = { left = "[$]", right = "[%w(%[{<]" },
+      ["]"] = { left = "[%[]", right = "[%w(%[{<]" },
       ["{"] = { left = "[$]", right = "[%w(%[{<]" },
-      ["}"] = { left = "[$]", right = "[%w(%[{<]" },
+      ["}"] = { left = "[{]", right = "[%w(%[{<]" },
    },
    options = {
       disabled_filetypes = { "text" },
@@ -179,7 +179,7 @@ function autoclose.setup(user_config)
    end
 
    if user_config.bidirectional_touch_regex ~= nil then
-      for key, patterns in pairs(user_config.keys) do
+      for key, patterns in pairs(user_config.bidirectional_touch_regex) do
          config.bidirectional_touch_regex[key] = patterns
       end
    end
