@@ -115,8 +115,6 @@ local function handler(key, info, mode)
    end
 
    local pair = mode == "insert" and insert_get_pair() or command_get_pair()
-   print("key: " .. key)
-   print("pair: " .. pair)
 
    if (key == "<BS>" or key == "<C-H>" or key == "<C-W>") and is_pair(pair) then
       return "<BS><Del>"
@@ -141,9 +139,6 @@ local function handler(key, info, mode)
       -- regex matching can be set for both sides at the key level
       if config.bidirectional_touch_regex[key] ~= nil
       then
-         print("bidirectional_touch_regex[key].left: " .. config.bidirectional_touch_regex[key].left)
-         print("bidirectional_touch_regex[key].right: " .. config.bidirectional_touch_regex[key].right)
-         print("config.options.bidirectional_disable_when_touch: " .. tostring(config.options.bidirectional_disable_when_touch))
          if config.options.bidirectional_disable_when_touch
          and (
             pair:sub(1, 1):match(config.bidirectional_touch_regex[key].left)
