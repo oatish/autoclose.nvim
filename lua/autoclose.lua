@@ -25,14 +25,14 @@ local config = {
    },
    bidirectional_touch_regex = {
       ["'"] = { left = "[%w)%]}>']", right = "[%w(%[{<]" },
-      ['"'] = { left = '"', right = '[%w(%[{<]' },
-      ["`"] = { left = "`", right = "[%w(%[{<]" },
-      ["("] = { left = "", right = "[%w(%[{<]" },
-      [")"] = { left = "", right = "[%w(%[{<]" },
-      ["["] = { left = "", right = "[%w(%[{<]" },
-      ["]"] = { left = "", right = "[%w(%[{<]" },
-      ["{"] = { left = "", right = "[%w(%[{<]" },
-      ["}"] = { left = "", right = "[%w(%[{<]" },
+      ['"'] = { left = '["]', right = '[%w(%[{<]' },
+      ["`"] = { left = "[`]", right = "[%w(%[{<]" },
+      ["("] = { left = "[$]", right = "[%w(%[{<]" },
+      [")"] = { left = "[$]", right = "[%w(%[{<]" },
+      ["["] = { left = "[$]", right = "[%w(%[{<]" },
+      ["]"] = { left = "[$]", right = "[%w(%[{<]" },
+      ["{"] = { left = "[$]", right = "[%w(%[{<]" },
+      ["}"] = { left = "[$]", right = "[%w(%[{<]" },
    },
    options = {
       disabled_filetypes = { "text" },
@@ -175,6 +175,12 @@ function autoclose.setup(user_config)
    if user_config.keys ~= nil then
       for key, info in pairs(user_config.keys) do
          config.keys[key] = info
+      end
+   end
+
+   if user_config.bidirectional_touch_regex ~= nil then
+      for key, patterns in pairs(user_config.keys) do
+         config.bidirectional_touch_regex[key] = patterns
       end
    end
 
